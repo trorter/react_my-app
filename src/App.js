@@ -7,18 +7,18 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 const App = () => {
   return (
-      <Router>
-        <div className={"app-wrapper"}>
-            <Header />
-            <Navbar />
-            <div className={"app-wrapper-content "}>
-                <Routes>
-                    <Route path="/dialogs/*" element={<Dialogs />} />
-                    <Route exact path="/profile" element={<Profile />} />
-                </Routes>
-            </div>
+    <Router>
+      <div className={"app-wrapper"}>
+        <Header/>
+        <Navbar/>
+        <div className={"app-wrapper-content "}>
+          <Routes>
+            <Route path="/dialogs/*" element={<Dialogs/>}/>
+            <Route exact path="/profile" element={<Profile/>}/>
+          </Routes>
         </div>
-      </Router>
+      </div>
+    </Router>
   );
 }
 

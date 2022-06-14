@@ -3,10 +3,15 @@ import Post from "./Post/Post";
 
 const MyPosts = () => {
     return (
-        <div>
+        <div className={s.myPosts}>
             My posts
             <div>
-                New post
+                <div>
+                    <textarea />
+                </div>
+                <div>
+                    <button>Add post</button>
+                </div>
             </div>
             <div>
                 <Post message={`It's my fist post`}/>
