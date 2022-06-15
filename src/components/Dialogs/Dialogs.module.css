@@ -10,20 +10,8 @@
     background-color: #3f3f3f;
 }
 
-.dialog {
-    padding: 10px;
-}
-
-.dialogLink {
-    color: white;
-    text-decoration: none;
-}
-
 .messages {
     background-color: #100f0f;
     color: white;
 }
 
-.message {
-    padding: 10px;
-}
