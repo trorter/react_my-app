@@ -1,4 +1,4 @@
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree = () => {}
 
 let state = {
   profilePage : {
@@ -24,8 +24,7 @@ let state = {
   }
 }
 
-
-let addPost = () => {
+const addPost = () => {
   let maxId = 0;
   state.profilePage.posts.forEach(post => maxId = Math.max(post.id, maxId))
 
@@ -37,18 +36,21 @@ let addPost = () => {
   state.profilePage.posts.push(newPost)
   state.profilePage.posts.message = ''
 
-  rerenderEntireTree(state)
+  rerenderEntireTree()
 }
 
 state.profilePage.posts.addPost = addPost;
 
 state.profilePage.posts.message = ''
-let editMessage = value => {
+const editMessage = value => {
   state.profilePage.posts.message = value
 
-  rerenderEntireTree(state)
+  rerenderEntireTree()
 }
 state.profilePage.posts.editMessage = editMessage
 
+export const subscribe = observer => {
+  rerenderEntireTree = observer
+}
 
 export default state
