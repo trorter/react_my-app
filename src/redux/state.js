@@ -1,4 +1,6 @@
-let rerenderEntireTree = () => {}
+let rerenderEntireTree = () => {
+  console.log('Mock')
+}
 
 let state = {
   profilePage : {
