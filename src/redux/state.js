@@ -2,7 +2,7 @@ let rerenderEntireTree = () => {
   console.log('Mock')
 }
 
-let state = {
+const state = {
   profilePage : {
     posts: [
       {id: 1, message: 'It\'s my fist post', likesCount: '100'},
