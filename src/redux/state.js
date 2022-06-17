@@ -35,6 +35,7 @@ let addPost = (postMessage) => {
     likesCount: '0'
   }
   state.profilePage.posts.push(newPost)
+  state.profilePage.posts.message = ''
 
   rerenderEntireTree(state)
 }
