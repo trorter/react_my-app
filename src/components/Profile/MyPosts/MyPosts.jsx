@@ -9,8 +9,7 @@ const MyPosts = (props) => {
   let textElement = React.createRef();
 
   let addPost = () => {
-    props.posts.addPost(textElement.current.value)
-    textElement.current.value = ''
+    props.posts.addPost()
   }
 
   let editMessage = event => {

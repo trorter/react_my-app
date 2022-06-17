@@ -25,13 +25,13 @@ let state = {
 }
 
 
-let addPost = (postMessage) => {
+let addPost = () => {
   let maxId = 0;
   state.profilePage.posts.forEach(post => maxId = Math.max(post.id, maxId))
 
   let newPost = {
     id: ++maxId,
-    message: postMessage,
+    message: state.profilePage.posts.message,
     likesCount: '0'
   }
   state.profilePage.posts.push(newPost)
