@@ -24,6 +24,7 @@ let state = {
   }
 }
 
+
 let addPost = (postMessage) => {
   let maxId = 0;
   state.profilePage.posts.forEach(post => maxId = Math.max(post.id, maxId))
@@ -39,5 +40,14 @@ let addPost = (postMessage) => {
 }
 
 state.profilePage.posts.addPost = addPost;
+
+state.profilePage.posts.message = ''
+let editMessage = value => {
+  state.profilePage.posts.message = value
+
+  rerenderEntireTree(state)
+}
+state.profilePage.posts.editMessage = editMessage
+
 
 export default state

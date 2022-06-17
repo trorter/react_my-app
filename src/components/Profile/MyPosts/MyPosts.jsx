@@ -13,12 +13,17 @@ const MyPosts = (props) => {
     textElement.current.value = ''
   }
 
+  let editMessage = event => {
+    props.posts.editMessage(event.target.value)
+    textElement.current.value = props.posts.message
+  }
+
   return (
     <div className={s.myPosts}>
       My posts
       <div>
         <div>
-          <textarea ref={textElement} />
+          <textarea ref={textElement} value={props.posts.message} onChange={editMessage} />
         </div>
         <div>
           <button onClick={addPost} >Add post</button>
