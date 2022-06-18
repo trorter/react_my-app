@@ -1,20 +1,21 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
+import store from "../../../redux/state";
 
-const MyPosts = (props) => {
+const MyPosts = () => {
 
-  let postsElements = props.posts.map( p => <Post id={p.id} message={p.message} likesCount={p.likesCount} />)
+  let postsElements = store.getState().profilePage.posts.map( p => <Post id={p.id} message={p.message} likesCount={p.likesCount} />)
 
   let textElement = React.createRef();
 
   let addPost = () => {
-    props.posts.addPost()
+    store.addPost()
   }
 
   let editMessage = event => {
-    props.posts.editMessage(event.target.value)
-    textElement.current.value = props.posts.message
+    store.editMessage(event.target.value)
+    textElement.current.value = store.getState().profilePage.message
   }
 
   return (
@@ -22,7 +23,7 @@ const MyPosts = (props) => {
       My posts
       <div>
         <div>
-          <textarea ref={textElement} value={props.posts.message} onChange={editMessage} />
+          <textarea ref={textElement} value={store.getState().profilePage.message} onChange={editMessage} />
         </div>
         <div>
           <button onClick={addPost} >Add post</button>

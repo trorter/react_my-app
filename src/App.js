@@ -4,8 +4,9 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import store from "./redux/state";
 
-const App = (props) => {
+const App = () => {
 
   return (
     <Router>
@@ -14,8 +15,8 @@ const App = (props) => {
         <Navbar/>
         <div className={"app-wrapper-content "}>
           <Routes>
-            <Route exact path="/profile" element={<Profile posts={props.state.profilePage.posts} />} />
-            <Route path="/dialogs/*" element={<Dialogs dialogs={props.state.dialogPage.dialogs} messages={props.state.dialogPage.messages} />} />
+            <Route exact path="/profile" element={<Profile />} />
+            <Route path="/dialogs/*" element={<Dialogs dialogs={store.getState().dialogPage.dialogs} messages={store.getState().dialogPage.messages} />} />
           </Routes>
         </div>
       </div>
