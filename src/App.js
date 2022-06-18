@@ -15,7 +15,7 @@ const App = () => {
         <Navbar/>
         <div className={"app-wrapper-content "}>
           <Routes>
-            <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/profile" element={<Profile profile={store.getState().profilePage} dispatch={store.dispatch.bind(store)} />} />
             <Route path="/dialogs/*" element={<Dialogs dialogs={store.getState().dialogPage.dialogs} messages={store.getState().dialogPage.messages} />} />
           </Routes>
         </div>

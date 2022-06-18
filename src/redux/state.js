@@ -1,13 +1,13 @@
 const store = {
-  _state : {
-    profilePage : {
+  _state: {
+    profilePage: {
       posts: [
         {id: 1, message: 'It\'s my fist post', likesCount: '100'},
         {id: 2, message: 'Hi! How are you?', likesCount: '11'},
         {id: 3, message: 'Stub / mock post', likesCount: '12'},
         {id: 4, message: 'NEW ONE', likesCount: '22'}
       ],
-      message : ''
+      message: ''
     },
     dialogPage: {
       dialogs: [
@@ -23,32 +23,35 @@ const store = {
       ]
     }
   },
-  _callSubscriber () {
+  _callSubscriber() {
     console.log('Mock')
   },
-  getState () {
+
+  getState() {
     return this._state
   },
-  addPost () {
-    let maxId = 0;
-    this._state.profilePage.posts.forEach(post => maxId = Math.max(post.id, maxId))
-
-    let newPost = {
-      id: ++maxId,
-      message: this._state.profilePage.message,
-      likesCount: '0'
-    }
-    this._state.profilePage.posts.push(newPost)
-    this._state.profilePage.message = ''
-
-    this._callSubscriber()
-  },
-  subscribe (observer) {
+  subscribe(observer) {
     this._callSubscriber = observer
   },
-  editMessage (value) {
-    this._state.profilePage.message = value
-    this._callSubscriber()
+
+  dispatch (action) {
+    if (action.type === 'ADD-POST') {
+      let maxId = 0;
+      this._state.profilePage.posts.forEach(post => maxId = Math.max(post.id, maxId))
+
+      let newPost = {
+        id: ++maxId,
+        message: this._state.profilePage.message,
+        likesCount: '0'
+      }
+      this._state.profilePage.posts.push(newPost)
+      this._state.profilePage.message = ''
+
+      this._callSubscriber()
+    } else if (action.type === 'EDIT-MESSAGE') {
+      this._state.profilePage.message = action.message
+      this._callSubscriber()
+    }
   }
 }
 
