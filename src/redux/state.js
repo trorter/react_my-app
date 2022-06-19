@@ -1,3 +1,20 @@
+const EDIT_MESSAGE = 'EDIT-MESSAGE';
+const ADD_POST = 'ADD-POST';
+
+export const addPostActionCreator = () => {
+  return {
+    type: ADD_POST
+  }
+}
+
+export const editMessageActionCreator = (text) => {
+
+  return {
+    type: EDIT_MESSAGE,
+    message: text
+  }
+}
+
 const store = {
   _state: {
     profilePage: {
@@ -35,7 +52,7 @@ const store = {
   },
 
   dispatch (action) {
-    if (action.type === 'ADD-POST') {
+    if (action.type === ADD_POST) {
       let maxId = 0;
       this._state.profilePage.posts.forEach(post => maxId = Math.max(post.id, maxId))
 
@@ -48,7 +65,7 @@ const store = {
       this._state.profilePage.message = ''
 
       this._callSubscriber()
-    } else if (action.type === 'EDIT-MESSAGE') {
+    } else if (action.type === EDIT_MESSAGE) {
       this._state.profilePage.message = action.message
       this._callSubscriber()
     }
