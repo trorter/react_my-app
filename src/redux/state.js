@@ -1,19 +1,21 @@
 const EDIT_MESSAGE = 'EDIT-MESSAGE';
 const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
+const SEND_MESSAGE = 'SEND_MESSAGE'
 
-export const addPostActionCreator = () => {
-  return {
-    type: ADD_POST
-  }
-}
+export const addPostActionCreator = () => ({type: ADD_POST})
 
-export const editMessageActionCreator = (text) => {
-
-  return {
+export const editMessageActionCreator = (text) => ({
     type: EDIT_MESSAGE,
     message: text
-  }
-}
+  })
+
+export const updateNewMessageBody = (body) => ({
+  type: UPDATE_NEW_MESSAGE_BODY,
+  body: body
+})
+
+export const sendMessageActionCreator = () => ({type: SEND_MESSAGE})
 
 const store = {
   _state: {
@@ -37,8 +39,10 @@ const store = {
         {id: 1, message: 'Hello'},
         {id: 2, message: 'What\'s up?'},
         {id: 3, message: 'How is your studying?'}
-      ]
-    }
+      ],
+      newMessageBody: ''
+    },
+    sidebar: {}
   },
   _callSubscriber() {
     console.log('Mock')
@@ -65,8 +69,26 @@ const store = {
       this._state.profilePage.message = ''
 
       this._callSubscriber()
+
     } else if (action.type === EDIT_MESSAGE) {
       this._state.profilePage.message = action.message
+      this._callSubscriber()
+
+    } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+      this._state.dialogPage.newMessageBody = action.body
+      this._callSubscriber()
+
+    } else if (action.type === SEND_MESSAGE) {
+      let maxId = 0;
+      this._state.profilePage.posts.forEach(post => maxId = Math.max(post.id, maxId))
+
+      let newMessage = {
+        id: ++maxId,
+        message: this._state.dialogPage.newMessageBody
+      }
+      this._state.dialogPage.messages.push(newMessage)
+      this._state.dialogPage.newMessageBody = ''
+
       this._callSubscriber()
     }
   }
